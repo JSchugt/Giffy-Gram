@@ -1,0 +1,13 @@
+@import "navigation.css";
+@import "post.css";
+
+
+nav{
+    display: flex;
+    flex-direction: row;
+    align-content: left;
+}
+
+img {
+    max-width: fit-content;
+}
