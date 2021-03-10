@@ -7,6 +7,7 @@ export const Post = (postObject) => {
         <h4>${postObject.userId}</h4>
         <img class="post__image" src="${postObject.imageURL}" />
         <p>${postObject.description}</p>
+        <div><button id="edit--${postObject.id}">Edit</button></div>
       </section>
     `
 }

@@ -5,7 +5,7 @@ export const NavBar = () => {
                 <img id="PB" src="./images/pb.png" alt="Giffygram icon" />
             </div>
             <div class="navigation__item navigation__name">
-                Giffygram
+                Giffygram 
             </div>
             <div class="navigation__item navigation__search">
                 <input type="text" id="postSearch" placeholder="Search posts..." />
