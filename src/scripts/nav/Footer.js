@@ -1,12 +1,9 @@
 const applicationElement = document.querySelector(".giffygram")
 
-// applicationElement.addEventListener("change", event => {
-//     if (event.target.id === "yearSelection") {
-//         const yearAsNumber = parseInt(event.target.value)
+export const updatePostCounter = postNum => {
+    document.querySelector("#postCount").innerHTML = postNum.length;
 
-//         console.log(`User wants to see posts since ${yearAsNumber}`)
-//     }
-// })
+}
 
 export const Footer = () => {
 
