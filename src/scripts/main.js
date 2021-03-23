@@ -1,10 +1,10 @@
 // Can you explain what is being imported here?
-import { getPosts, getUsers, usePostCollection } from "./data/DataManager.js"
+import { deletePost, getPosts, getUsers, usePostCollection } from "./data/DataManager.js"
 import { PostList } from "./PostsList.js"
 import { NavBar } from "./NavBar.js"
 import { Footer, updatePostCounter } from "./nav/Footer.js";
 import { PostEntry } from "./feed/postEntry.js";
-import {createPost} from "./data/DataManager.js";
+import { createPost } from "./data/DataManager.js";
 
 /**
  * Main logic module for what should happen on initial page load for Giffygram
@@ -70,11 +70,11 @@ applicationElement.addEventListener("change", event => {
         showFilteredPosts(yearAsNumber);
     }
 })
-const showPostEntry = () => { 
+const showPostEntry = () => {
     //Get a reference to the location on the DOM where the nav will display
     const entryElement = document.querySelector(".entryForm");
     entryElement.innerHTML = PostEntry();
-  }
+}
 // Calls functions to start Giffy Gram
 const startGiffyGram = () => {
     showNavBar();
@@ -85,31 +85,40 @@ const startGiffyGram = () => {
 applicationElement.addEventListener("click", event => {
     event.preventDefault();
     if (event.target.id === "newPost__submit") {
-    //collect the input values into an object to post to the DB
-      const title = document.querySelector("input[name='postTitle']").value
-      const url = document.querySelector("input[name='postURL']").value
-      const description = document.querySelector("textarea[name='postDescription']").value
-      //we have not created a user yet - for now, we will hard code `1`.
-      //we can add the current time as well
-      const postObject = {
-          title: title,
-          imageURL: url,
-          description: description,
-          userId: 1,
-          timestamp: Date.now()
-      }
-  
-    // be sure to import from the DataManager
-      console.log("post object",postObject);
+        //collect the input values into an object to post to the DB
+        const title = document.querySelector("input[name='postTitle']").value
+        const url = document.querySelector("input[name='postURL']").value
+        const description = document.querySelector("textarea[name='postDescription']").value
+        //we have not created a user yet - for now, we will hard code `1`.
+        //we can add the current time as well
+        const postObject = {
+            title: title,
+            imageURL: url,
+            description: description,
+            userId: 1,
+            timestamp: Date.now()
+        }
+
+        // be sure to import from the DataManager
+        console.log("post object", postObject);
         createPost(postObject).then(showPostList());
         document.getElementById("newPostId").reset();
 
         /// This will reload the whole page, only use if you want to reload the entire. PAGE!!!
-       // window.location.reload();
-    }else if(event.target.id === "newPost__cancel"){    
+        // window.location.reload();
+    } else if (event.target.id === "newPost__cancel") {
         // document.getElementById("newPostId").reset();
         //window.location.reload();
     }
 
+})
+
+applicationElement.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.id.startsWith("delete")) {
+        // the [] after split call is to index into the portion of the array that contains the id
+        const postId = event.target.id.split("__")[1];
+        deletePost(postId).then(response => showPostList());
+      }
   })
 startGiffyGram();
