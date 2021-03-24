@@ -4,7 +4,7 @@
       "title": "New Post asdf asdfasd",
       "imageURL": "https://media.giphy.com/media/d89VuJ4GflFfO/giphy.gif",
       "description": "hello world   ffffffff",
-      "userId": 1,
+      "userId": 2,
       "timestamp": 1616524746714,
       "id": 1
     },
@@ -12,7 +12,7 @@
       "title": "new GIF 2.0",
       "imageURL": "https://media.giphy.com/media/KzDqC8LvVC4lshCcGK/giphy.gif",
       "description": "Party Gif",
-      "userId": 1,
+      "userId": 3,
       "timestamp": 1616525802847,
       "id": 2
     }
@@ -20,12 +20,14 @@
   "likes": [],
   "users": [
     {
-      "id": 1
-    },
-    {
       "name": "Jeremiah",
       "email": "js@mail.com",
       "id": 2
+    },
+    {
+      "name": "someone",
+      "email": "so@mail.com",
+      "id":3
     }
   ]
 }

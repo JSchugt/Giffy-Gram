@@ -3,9 +3,9 @@ import {
     deletePost, getLoggedInUser, getPosts,
     getSinglePost, getUsers, logoutUser,
     updatePost, usePostCollection, loginUser,
-    registerUser, setLoggedInUser
+    registerUser, setLoggedInUser, getUserPosts
 } from "./data/DataManager.js"
-import { PostList } from "./PostsList.js"
+import { PostList, FilteredPostList } from "./PostsList.js"
 import { NavBar } from "./NavBar.js"
 import { Footer, updatePostCounter } from "./nav/Footer.js";
 import { PostEntry } from "./feed/postEntry.js";
@@ -35,10 +35,18 @@ const showFilteredPosts = (year) => {
     postElement.innerHTML = PostList(filteredData);
     updatePostCounter(filteredData);
 }
+
 // Shows post loaded in data base
 const showPostList = () => {
     getPosts().then((allPosts) => {
         postElement.innerHTML = PostList(allPosts);
+    })
+}
+const showFilteredPostList = () => {
+    let userId = getLoggedInUser();
+    console.log(getUserPosts(),"user posts")
+    getUserPosts().then((allPosts)=> {
+        postElement.innerHTML = FilteredPostList(allPosts)
     })
 }
 const showFooter = () => {
@@ -204,6 +212,12 @@ applicationElement.addEventListener("click", event => {
         console.log(getLoggedInUser());
         sessionStorage.clear();
         checkForUser();
+    }
+})
+
+applicationElement.addEventListener("click",event =>{
+    if(event.target.id === "userFilter"){
+        showFilteredPostList();
     }
 })
 checkForUser()

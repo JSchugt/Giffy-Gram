@@ -34,7 +34,16 @@ export const getPosts = () => {
       return parsedResponse;
     })
 }
-
+export const getUserPosts = () => {
+  const userId = getLoggedInUser().id;
+  return fetch(`http://localhost:8088/posts?user=${userId}&_expand=user`)
+  .then(response => response.json())
+  .then(parsedResponse => {
+    console.log("data with user", parsedResponse)
+    postCollection = parsedResponse
+    return parsedResponse;
+  })
+}
 export const createPost = postObj => {
   return fetch("http://localhost:8088/posts", {
     method: "POST",
