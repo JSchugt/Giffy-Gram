@@ -57,7 +57,8 @@ const showNavBar = () => {
 }
 const showEdit = (postObj) => {
     const entryElement = document.querySelector(".entryForm");
-    entryElement.innerHTML = PostEntry(postObj);
+    entryElement.innerHTML = PostEdit(postObj);
+    
 }
 
 // EVENT Listeners
@@ -133,6 +134,7 @@ applicationElement.addEventListener("click", event => {
         deletePost(postId).then(response => showPostList());
     } else if (event.target.id.startsWith("edit")) {
         const postId = event.target.id.split("__")[1];
+        console.log("insdie edit button")
         getSinglePost(postId)
             .then(response => showEdit(response));
     } else if (event.target.id.startsWith("update")) {
@@ -162,6 +164,7 @@ const showLoginRegister = () => {
 }
 
 const checkForUser = () => {
+    showPostList();
     if (sessionStorage.getItem("user")) {
         setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
         startGiffyGram();
